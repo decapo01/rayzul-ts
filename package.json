@@ -1,0 +1,15 @@
+{
+  "name": "rayzul-ts",
+  "version": "1.0.0",
+  "description": "A rust results type library in typescript",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
+}
