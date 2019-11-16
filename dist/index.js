@@ -1,16 +1,17 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ResType;
 (function (ResType) {
     ResType[ResType["Ok"] = 0] = "Ok";
     ResType[ResType["Er"] = 1] = "Er";
-})(ResType || (ResType = {}));
-var ok = function (item) {
+})(ResType = exports.ResType || (exports.ResType = {}));
+exports.ok = function (item) {
     return { type: ResType.Ok, item: item };
 };
-var er = function (error) {
+exports.er = function (error) {
     return { type: ResType.Er, error: error };
 };
-var map = function (result, func) {
+exports.map = function (result, func) {
     switch (result.type) {
         case ResType.Ok: {
             return { type: ResType.Ok, item: func(result.item) };
@@ -20,7 +21,7 @@ var map = function (result, func) {
         }
     }
 };
-var flatMap = function (result, func) {
+exports.flatMap = function (result, func) {
     switch (result.type) {
         case ResType.Ok: {
             return func(result.item);
@@ -30,7 +31,7 @@ var flatMap = function (result, func) {
         }
     }
 };
-var getOrElse = function (result, other) {
+exports.getOrElse = function (result, other) {
     switch (result.type) {
         case ResType.Ok: {
             return result.item;
@@ -40,7 +41,7 @@ var getOrElse = function (result, other) {
         }
     }
 };
-var getUnsafe = function (result) {
+exports.getUnsafe = function (result) {
     switch (result.type) {
         case ResType.Ok: {
             return result.item;

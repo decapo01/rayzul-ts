@@ -1,30 +1,32 @@
 
-enum ResType {
+
+
+export enum ResType {
   Ok,
   Er
 }
 
-type Ok<T,E> = {
+export type Ok<T,E> = {
   item : T,
   type : ResType.Ok
 }
 
-type Er<T,E> = {
+export type Er<T,E> = {
   error : E,
   type  : ResType.Er
 }
 
-type Result<T,E> = Ok<T,E> | Er<T,E>
+export type Result<T,E> = Ok<T,E> | Er<T,E>
 
-const ok = <T,E>(item: T): Result<T,E> => {
+export const ok = <T,E>(item: T): Result<T,E> => {
   return { type: ResType.Ok, item: item }
 }
 
-const er = <T,E>(error: E): Result<T,E> => {
+export const er = <T,E>(error: E): Result<T,E> => {
   return { type: ResType.Er, error: error }
 }
 
-const map = <T,E,B>(result: Result<T,E>, func: (itme: T) => B): Result<B,E> => {
+export const map = <T,E,B>(result: Result<T,E>, func: (itme: T) => B): Result<B,E> => {
   switch(result.type){
     case ResType.Ok : {
       return { type: ResType.Ok, item : func(result.item) }
@@ -35,7 +37,7 @@ const map = <T,E,B>(result: Result<T,E>, func: (itme: T) => B): Result<B,E> => {
   }
 }
 
-const flatMap = <T,E,B>(result: Result<T,E>, func: (item: T) => Result<B,E>): Result<B,E> => {
+export const flatMap = <T,E,B>(result: Result<T,E>, func: (item: T) => Result<B,E>): Result<B,E> => {
   switch(result.type){
     case ResType.Ok : {
       return func(result.item)
@@ -46,7 +48,7 @@ const flatMap = <T,E,B>(result: Result<T,E>, func: (item: T) => Result<B,E>): Re
   }
 }
 
-const getOrElse = <T,E>(result: Result<T,E>, other: T): T => {
+export const getOrElse = <T,E>(result: Result<T,E>, other: T): T => {
   switch(result.type){
     case ResType.Ok : {
       return result.item
@@ -57,7 +59,7 @@ const getOrElse = <T,E>(result: Result<T,E>, other: T): T => {
   }
 }
 
-const getUnsafe = <T,E>(result: Result<T,E>): T => {
+export const getUnsafe = <T,E>(result: Result<T,E>): T => {
   switch(result.type){
     case ResType.Ok : {
       return result.item
